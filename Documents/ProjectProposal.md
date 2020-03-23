@@ -7,7 +7,6 @@ USTH BI9 students, with student IDs and GitHub account name included:
 
 
 ## Introduction
-In the modern society, many people are working more than they should, resulting in very little time to relax, or to spend in personal hobbies. This can lead to people being tired or even worrse, stressed. 
 In the modern society, many people are working more than they should, resulting in very little time to relax, or to spend on personal hobbies. This can lead to people being tired or even worrse, stressed. 
 It is necessary to tackle this common phenomenon, and for our project, we decided to make a game of chess, with the aim of getting people into a new hobby, and relieve their stresses.
 
