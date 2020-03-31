@@ -6,7 +6,7 @@ from time import strftime
 from copy import deepcopy
 pygame.init()
 
-SQUARE_SIDE = 50
+SQUARE_SIDE = 70
 AI_SEARCH_DEPTH = 2
 
 RED_CHECK          = (240, 150, 150)
