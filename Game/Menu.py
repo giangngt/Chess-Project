@@ -25,17 +25,26 @@ def main_menu():
         textRect.center = (400, 300)
         screen.blit(textSurf, textRect)
         mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
         if 750 > mouse[0] > 50 and 575 > mouse[1] > 525:
             pygame.draw.rect(screen, (0, 150, 0), (50, 525, 700, 50))
+            # if click[0] == 1:
+               # link to gui
         else:
             pygame.draw.rect(screen, (0, 255, 0), (50, 525, 700, 50))
 
         if 750 > mouse[0] > 450 and 500 > mouse[1] > 450:
             pygame.draw.rect(screen, (150, 0, 0), (450, 450, 300, 50))
+            if click[0] == 1:
+                pygame.quit()
+                quit()
         else:
             pygame.draw.rect(screen, (255, 0, 0), (450, 450, 300, 50))
+
         if 350 > mouse[0] > 50 and 500 > mouse[1] > 450:
             pygame.draw.rect(screen, (0, 0, 150), (50, 450, 300, 50))
+            # if click[0] == 1:
+                # link to HTP
         else:
             pygame.draw.rect(screen, (0, 0, 255), (50, 450, 300, 50))
 
