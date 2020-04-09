@@ -28,8 +28,8 @@ def main_menu():
         click = pygame.mouse.get_pressed()
         if 750 > mouse[0] > 50 and 575 > mouse[1] > 525:
             pygame.draw.rect(screen, (0, 150, 0), (50, 525, 700, 50))
-            # if click[0] == 1:
-               # link to gui
+            if click[0] == 1:
+               exec(open('gui.py').read())
         else:
             pygame.draw.rect(screen, (0, 255, 0), (50, 525, 700, 50))
 
