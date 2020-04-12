@@ -3,15 +3,23 @@ import pygame
 pygame.init()
 screen = pygame.display.set_mode((800, 600)) # Change to reso of gui
 
+# Background, change the image should you find a better one
+background = pygame.image.load('images/menu-wallpaper.jpg').convert()
+background = pygame.transform.scale(background, (800, 600)) # This is to resize the background to fit UI, I find not having this also looks good
+
+
+
 clock = pygame.time.Clock()
 
 def text_objects(text, font):
-    textSurface = font.render(text, True, (0, 0, 0))
+    textSurface = font.render(text, True, (0, 128, 128)) #Please consider making changes to the colouring, this is just temporary
     return textSurface, textSurface.get_rect()
 
 
 def main_menu():
     menu = True
+    #background = pygame.image.load('chess.bmp').convert()
+    #screen.blit(background,(0,0))
     while menu:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -19,7 +27,8 @@ def main_menu():
                 quit()
             #if event.type == pygame.MOUSEBUTTONDOWN:
                 #if event.key == pygame.
-        screen.fill((255, 255, 255))
+        screen.blit(background, (0, 0))
+        #screen.fill((255, 255, 255))
         largeText = pygame.font.Font('freesansbold.ttf', 115)
         textSurf, textRect = text_objects('Chess Game', largeText)
         textRect.center = (400, 300)
