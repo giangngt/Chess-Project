@@ -6,6 +6,10 @@ from time import strftime
 from copy import deepcopy
 pygame.init()
 
+<<<<<<< HEAD:gui.py
+=======
+
+>>>>>>> Menu:Game/gui.py
 SQUARE_SIDE = 70
 AI_SEARCH_DEPTH = 2
 
@@ -49,11 +53,70 @@ WHITE_JOKER  = pygame.image.load('images/white_joker.png')
 CLOCK = pygame.time.Clock()
 CLOCK_TICK = 15
 
-SCREEN = pygame.display.set_mode((8*SQUARE_SIDE, 8*SQUARE_SIDE), pygame.RESIZABLE)
+#SCREEN = pygame.display.set_mode((8*SQUARE_SIDE, 8*SQUARE_SIDE), pygame.RESIZABLE)
+SCREEN = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
 SCREEN_TITLE = 'Chess Game'
 
 pygame.display.set_icon(pygame.image.load('images/chess_icon.ico'))
 pygame.display.set_caption(SCREEN_TITLE)
+def text_objects(text, font):
+    textSurface = font.render(text, True, (0, 0, 0))
+    return textSurface, textSurface.get_rect()
+
+
+def main_menu():
+    menu = True
+    while menu:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            #if event.type == pygame.MOUSEBUTTONDOWN:
+                #if event.key == pygame.
+        SCREEN.fill((255, 255, 255))
+        largeText = pygame.font.Font('freesansbold.ttf', 115)
+        textSurf, textRect = text_objects('Chess Game', largeText)
+        textRect.center = (400, 300)
+        SCREEN.blit(textSurf, textRect)
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
+        if 750 > mouse[0] > 50 and 575 > mouse[1] > 525:
+            pygame.draw.rect(SCREEN, (0, 150, 0), (50, 525, 700, 50))
+            if click[0] == 1:
+                return
+        else:
+            pygame.draw.rect(SCREEN, (0, 255, 0), (50, 525, 700, 50))
+
+        if 750 > mouse[0] > 450 and 500 > mouse[1] > 450:
+            pygame.draw.rect(SCREEN, (150, 0, 0), (450, 450, 300, 50))
+            if click[0] == 1:
+                pygame.quit()
+                quit()
+        else:
+            pygame.draw.rect(SCREEN, (255, 0, 0), (450, 450, 300, 50))
+
+        if 350 > mouse[0] > 50 and 500 > mouse[1] > 450:
+            pygame.draw.rect(SCREEN, (0, 0, 150), (50, 450, 300, 50))
+            # if click[0] == 1:
+                # link to HTP
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 255), (50, 450, 300, 50))
+
+        smallText = pygame.font.Font('freesansbold.ttf', 30)
+        textSurf, textRect = text_objects('Start!', smallText)
+        textRect.center = (400, 550)
+        SCREEN.blit(textSurf, textRect)
+        textSurf, textRect = text_objects('Instruction', smallText)
+        textRect.center = (200, 475)
+        SCREEN.blit(textSurf, textRect)
+        pygame.display.update()
+        textSurf, textRect = text_objects('Quit', smallText)
+        textRect.center = (600, 475)
+        SCREEN.blit(textSurf, textRect)
+        pygame.display.update()
+        CLOCK.tick(30)
+
+main_menu()
 
 def resize_screen(square_side_len):
     global SQUARE_SIDE
@@ -64,7 +127,7 @@ def resize_screen(square_side_len):
 def print_empty_board():
     SCREEN.fill(BOARD_COLOR[0])
     paint_dark_squares(BOARD_COLOR[1])
-    
+
 def paint_square(square, square_color):
     col = chess.FILES.index(square[0])
     row = 7-chess.RANKS.index(square[1])
@@ -73,7 +136,7 @@ def paint_square(square, square_color):
 def paint_dark_squares(square_color):
     for position in chess.single_gen(chess.DARK_SQUARES):
         paint_square(chess.bb2str(position), square_color)
-            
+
 def get_square_rect(square):
     col = chess.FILES.index(square[0])
     row = 7-chess.RANKS.index(square[1])
@@ -88,20 +151,20 @@ def coord2str(position, color=chess.WHITE):
         file_index = 7 - int(position[0]/SQUARE_SIDE)
         rank_index = int(position[1]/SQUARE_SIDE)
         return chess.FILES[file_index] + chess.RANKS[rank_index]
-    
+
 def print_board(board, color=chess.WHITE):
     if color == chess.WHITE:
         printed_board = board
     if color == chess.BLACK:
         printed_board = chess.rotate_board(board)
-    
+
     print_empty_board()
-    
+
     if chess.is_check(board, chess.WHITE):
         paint_square(chess.bb2str(chess.get_king(printed_board, chess.WHITE)), RED_CHECK)
     if chess.is_check(board, chess.BLACK):
         paint_square(chess.bb2str(chess.get_king(printed_board, chess.BLACK)), RED_CHECK)
-    
+
     for position in chess.colored_piece_gen(printed_board, chess.KING, chess.BLACK):
         SCREEN.blit(pygame.transform.scale(BLACK_KING,   (SQUARE_SIDE,SQUARE_SIDE)), get_square_rect(chess.bb2str(position)))
     for position in chess.colored_piece_gen(printed_board, chess.QUEEN, chess.BLACK):
@@ -116,7 +179,7 @@ def print_board(board, color=chess.WHITE):
         SCREEN.blit(pygame.transform.scale(BLACK_PAWN,   (SQUARE_SIDE,SQUARE_SIDE)), get_square_rect(chess.bb2str(position)))
     for position in chess.colored_piece_gen(printed_board, chess.JOKER, chess.BLACK):
         SCREEN.blit(pygame.transform.scale(BLACK_JOKER,  (SQUARE_SIDE,SQUARE_SIDE)), get_square_rect(chess.bb2str(position)))
-        
+
     for position in chess.colored_piece_gen(printed_board, chess.KING, chess.WHITE):
         SCREEN.blit(pygame.transform.scale(WHITE_KING,   (SQUARE_SIDE,SQUARE_SIDE)), get_square_rect(chess.bb2str(position)))
     for position in chess.colored_piece_gen(printed_board, chess.QUEEN, chess.WHITE):
@@ -131,13 +194,13 @@ def print_board(board, color=chess.WHITE):
         SCREEN.blit(pygame.transform.scale(WHITE_PAWN,   (SQUARE_SIDE,SQUARE_SIDE)), get_square_rect(chess.bb2str(position)))
     for position in chess.colored_piece_gen(printed_board, chess.JOKER, chess.WHITE):
         SCREEN.blit(pygame.transform.scale(WHITE_JOKER,  (SQUARE_SIDE,SQUARE_SIDE)), get_square_rect(chess.bb2str(position)))
-        
+
     pygame.display.flip()
-    
+
 def set_title(title):
     pygame.display.set_caption(title)
     pygame.display.flip()
-    
+
 def make_AI_move(game, color):
     set_title(SCREEN_TITLE + ' - Calculating move...')
     new_game = chess.make_move(game, chess.get_AI_move(game, AI_SEARCH_DEPTH))
@@ -152,41 +215,46 @@ def try_move(game, attempted_move):
     return game
 
 def play_as(game, color):
+    menu = True
+    while menu:
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP:
+                menu = False
     run = True
     ongoing = True
     joker = 0
-    
+
     try:
         while run:
             CLOCK.tick(CLOCK_TICK)
             print_board(game.board, color)
-            
+
             if chess.game_ended(game):
                 set_title(SCREEN_TITLE + ' - ' + chess.get_outcome(game))
                 ongoing = False
-            
+
             if ongoing and game.to_move == chess.opposing_color(color):
                 game = make_AI_move(game, color)
-            
+
             if chess.game_ended(game):
                 set_title(SCREEN_TITLE + ' - ' + chess.get_outcome(game))
                 ongoing = False
-             
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
-                
+
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     leaving_square = coord2str(event.pos, color)
-                    
+
                 if event.type == pygame.MOUSEBUTTONUP:
                     arriving_square = coord2str(event.pos, color)
-                    
+
                     if ongoing and game.to_move == color:
                         move = (chess.str2bb(leaving_square), chess.str2bb(arriving_square))
                         game = try_move(game, move)
                         print_board(game.board, color)
-                
+
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE or event.key == 113:
                         run = False
@@ -215,7 +283,7 @@ def play_as(game, color):
                             queen_index = chess.bb2index(chess.get_queen(game.board, color))
                             game.board[queen_index] = color|chess.JOKER
                             print_board(game.board, color)
-                
+
                 if event.type == pygame.VIDEORESIZE:
                     if SCREEN.get_height() != event.h:
                         resize_screen(int(event.h/8.0))
@@ -245,3 +313,8 @@ def play_random_color(game=chess.Game()):
 
 # chess.verbose = True
 play_random_color()
+
+
+
+
+
