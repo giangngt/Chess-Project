@@ -6,10 +6,7 @@ from time import strftime
 from copy import deepcopy
 pygame.init()
 
-<<<<<<< HEAD:gui.py
-=======
 
->>>>>>> Menu:Game/gui.py
 SQUARE_SIDE = 70
 AI_SEARCH_DEPTH = 2
 
