@@ -50,7 +50,8 @@ WHITE_JOKER  = pygame.image.load('images/white_joker.png')
 CLOCK = pygame.time.Clock()
 CLOCK_TICK = 15
 
-SCREEN = pygame.display.set_mode((8*SQUARE_SIDE, 8*SQUARE_SIDE), pygame.RESIZABLE)
+#SCREEN = pygame.display.set_mode((8*SQUARE_SIDE, 8*SQUARE_SIDE), pygame.RESIZABLE)
+SCREEN = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
 SCREEN_TITLE = 'Chess Game'
 
 pygame.display.set_icon(pygame.image.load('images/chess_icon.ico'))
@@ -211,6 +212,11 @@ def try_move(game, attempted_move):
     return game
 
 def play_as(game, color):
+    menu = True
+    while menu:
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP:
+                menu = False
     run = True
     ongoing = True
     joker = 0
