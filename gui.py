@@ -4,6 +4,7 @@ from traceback import format_exc
 from sys import stderr
 from time import strftime
 from copy import deepcopy
+import time
 pygame.init()
 
 
@@ -227,13 +228,14 @@ def play_as(game, color):
     joker = 0
 
     try:
-        while run:
+        while run and ongoing:
             CLOCK.tick(CLOCK_TICK)
             print_board(game.board, color)
 
             if chess.game_ended(game):
                 set_title(SCREEN_TITLE + ' - ' + chess.get_outcome(game))
                 ongoing = False
+                time.sleep(5)
 
             if ongoing and game.to_move == chess.opposing_color(color):
                 game = make_AI_move(game, color)
@@ -241,6 +243,7 @@ def play_as(game, color):
             if chess.game_ended(game):
                 set_title(SCREEN_TITLE + ' - ' + chess.get_outcome(game))
                 ongoing = False
+                time.sleep(5)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
