@@ -48,6 +48,9 @@ WHITE_KNIGHT = pygame.image.load('images/white_knight.png')
 WHITE_PAWN   = pygame.image.load('images/white_pawn.png')
 WHITE_JOKER  = pygame.image.load('images/white_joker.png')
 
+MOVE_SOUND = pygame.mixer.Sound('sounds/chess-effect.wav')
+pygame.mixer.music.load('sounds/peaceful-piano.wav')
+
 CLOCK = pygame.time.Clock()
 CLOCK_TICK = 15
 
@@ -64,10 +67,20 @@ def text_objects(text, font):
     return textSurface, textSurface.get_rect()
 
 
+def resize_screen(square_side_len):
+    global SQUARE_SIDE
+    global SCREEN
+    SCREEN = pygame.display.set_mode((8*square_side_len, 8*square_side_len), pygame.RESIZABLE)
+    SQUARE_SIDE = square_side_len
+
+
+
 def main_menu():
     background = pygame.image.load('images/better-wallpaper.jpg').convert()
     background = pygame.transform.scale(background, (800, 800))
     title = pygame.image.load('images/title_pink.png').convert_alpha()
+    pygame.mixer.music.set_volume(0.05)
+    pygame.mixer.music.play(-1)
 
     menu = True
     while menu:
@@ -123,12 +136,6 @@ def main_menu():
         CLOCK.tick(30)
 
 main_menu()
-
-def resize_screen(square_side_len):
-    global SQUARE_SIDE
-    global SCREEN
-    SCREEN = pygame.display.set_mode((8*square_side_len, 8*square_side_len), pygame.RESIZABLE)
-    SQUARE_SIDE = square_side_len
 
 def print_empty_board():
     SCREEN.fill(BOARD_COLOR[0])
@@ -212,11 +219,13 @@ def make_AI_move(game, color):
     new_game = chess.make_move(game, chess.get_AI_move(game, AI_SEARCH_DEPTH))
     set_title(SCREEN_TITLE)
     print_board(new_game.board, color)
+    pygame.mixer.Sound.play(MOVE_SOUND)
     return new_game
 
 def try_move(game, attempted_move):
     for move in chess.legal_moves(game, game.to_move):
         if move == attempted_move:
+            pygame.mixer.Sound.play(MOVE_SOUND)
             game = chess.make_move(game, move)
     return game
 
@@ -274,6 +283,7 @@ def play_as(game, color):
                         set_title(SCREEN_TITLE)
                         print_board(game.board, color)
                         ongoing = True
+
                     if event.key == 99: # C key
                         global BOARD_COLOR
                         new_colors = deepcopy(BOARD_COLORS)
