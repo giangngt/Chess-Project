@@ -7,7 +7,7 @@ from copy import deepcopy
 pygame.init()
 
 
-SQUARE_SIDE = 70
+SQUARE_SIDE = 100
 AI_SEARCH_DEPTH = 2
 
 RED_CHECK          = (240, 150, 150)
@@ -50,18 +50,22 @@ WHITE_JOKER  = pygame.image.load('images/white_joker.png')
 CLOCK = pygame.time.Clock()
 CLOCK_TICK = 15
 
+
+
 #SCREEN = pygame.display.set_mode((8*SQUARE_SIDE, 8*SQUARE_SIDE), pygame.RESIZABLE)
-SCREEN = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
+SCREEN = pygame.display.set_mode((800, 800), pygame.RESIZABLE)
 SCREEN_TITLE = 'Chess Game'
 
 pygame.display.set_icon(pygame.image.load('images/chess_icon.ico'))
 pygame.display.set_caption(SCREEN_TITLE)
 def text_objects(text, font):
-    textSurface = font.render(text, True, (0, 0, 0))
+    textSurface = font.render(text, True, (255, 255, 255))
     return textSurface, textSurface.get_rect()
 
 
 def main_menu():
+    background = pygame.image.load('images/menu-wallpaper.jpg').convert()
+    #background = pygame.transform.scale(background, (640, 640)) # I decide that we should leave this
     menu = True
     while menu:
         for event in pygame.event.get():
@@ -70,45 +74,46 @@ def main_menu():
                 quit()
             #if event.type == pygame.MOUSEBUTTONDOWN:
                 #if event.key == pygame.
-        SCREEN.fill((255, 255, 255))
+        #SCREEN.fill((255, 255, 255))
+        SCREEN.blit(background, (0, 0))
         largeText = pygame.font.Font('freesansbold.ttf', 115)
         textSurf, textRect = text_objects('Chess Game', largeText)
-        textRect.center = (400, 300)
+        textRect.center = (400, 100)
         SCREEN.blit(textSurf, textRect)
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
-        if 750 > mouse[0] > 50 and 575 > mouse[1] > 525:
-            pygame.draw.rect(SCREEN, (0, 150, 0), (50, 525, 700, 50))
+        if 750 > mouse[0] > 50 and 760 > mouse[1] > 705:
+            pygame.draw.rect(SCREEN, (0, 150, 0), (50, 705, 700, 50))
             if click[0] == 1:
                 return
         else:
-            pygame.draw.rect(SCREEN, (0, 255, 0), (50, 525, 700, 50))
+            pygame.draw.rect(SCREEN, (0, 255, 0), (50, 705, 700, 50))
 
-        if 750 > mouse[0] > 450 and 500 > mouse[1] > 450:
-            pygame.draw.rect(SCREEN, (150, 0, 0), (450, 450, 300, 50))
+        if 750 > mouse[0] > 450 and 685 > mouse[1] > 630:
+            pygame.draw.rect(SCREEN, (150, 0, 0), (450, 630, 300, 50))
             if click[0] == 1:
                 pygame.quit()
                 quit()
         else:
-            pygame.draw.rect(SCREEN, (255, 0, 0), (450, 450, 300, 50))
+            pygame.draw.rect(SCREEN, (255, 0, 0), (450, 630, 300, 50))
 
-        if 350 > mouse[0] > 50 and 500 > mouse[1] > 450:
-            pygame.draw.rect(SCREEN, (0, 0, 150), (50, 450, 300, 50))
+        if 350 > mouse[0] > 50 and 685 > mouse[1] > 630:
+            pygame.draw.rect(SCREEN, (0, 0, 150), (50, 630, 300, 50))
             # if click[0] == 1:
                 # link to HTP
         else:
-            pygame.draw.rect(SCREEN, (0, 0, 255), (50, 450, 300, 50))
+            pygame.draw.rect(SCREEN, (0, 0, 255), (50, 630, 300, 50))
 
         smallText = pygame.font.Font('freesansbold.ttf', 30)
         textSurf, textRect = text_objects('Start!', smallText)
-        textRect.center = (400, 550)
+        textRect.center = (400, 730)
         SCREEN.blit(textSurf, textRect)
         textSurf, textRect = text_objects('Instruction', smallText)
-        textRect.center = (200, 475)
+        textRect.center = (200, 655)
         SCREEN.blit(textSurf, textRect)
         pygame.display.update()
         textSurf, textRect = text_objects('Quit', smallText)
-        textRect.center = (600, 475)
+        textRect.center = (600, 655)
         SCREEN.blit(textSurf, textRect)
         pygame.display.update()
         CLOCK.tick(30)
