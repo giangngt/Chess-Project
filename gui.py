@@ -284,6 +284,11 @@ def play_as(game, color):
                         print_board(game.board, color)
                         ongoing = True
 
+                    if event.key == 109: # M key
+                        if pygame.mixer.music.get_volume() == 0:
+                            pygame.mixer.music.set_volume(0.05)
+                        elif pygame.mixer.music.get_volume() != 0:
+                            pygame.mixer.music.set_volume(0)
                     if event.key == 99: # C key
                         global BOARD_COLOR
                         new_colors = deepcopy(BOARD_COLORS)
