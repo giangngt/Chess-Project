@@ -88,6 +88,11 @@ def main_menu():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+            if event.key == 109: # M key
+                if pygame.mixer.music.get_volume() == 0:
+                    pygame.mixer.music.set_volume(0.05)
+                elif pygame.mixer.music.get_volume() != 0:
+                    pygame.mixer.music.set_volume(0)
             #if event.type == pygame.MOUSEBUTTONDOWN:
                 #if event.key == pygame.
         #SCREEN.fill((255, 255, 255))
@@ -135,7 +140,7 @@ def main_menu():
         pygame.display.update()
         CLOCK.tick(30)
 
-main_menu()
+
 
 def print_empty_board():
     SCREEN.fill(BOARD_COLOR[0])
@@ -239,7 +244,7 @@ def play_as(game, color):
     ongoing = True
     joker = 0
 
-    try:
+    try:  
         while run and ongoing:
             CLOCK.tick(CLOCK_TICK)
             print_board(game.board, color)
@@ -254,8 +259,9 @@ def play_as(game, color):
 
             if chess.game_ended(game):
                 set_title(SCREEN_TITLE + ' - ' + chess.get_outcome(game))
-                ongoing = False
-                time.sleep(5)
+                if ongoing:
+                    ongoing = False
+                    time.sleep(5)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -335,7 +341,9 @@ def play_random_color(game=chess.Game()):
     play_as(game, color)
 
 # chess.verbose = True
-play_random_color()
+while True:
+    main_menu()
+    play_random_color()
 
 
 
