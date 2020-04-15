@@ -88,11 +88,13 @@ def main_menu():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-            if event.key == 109: # M key
-                if pygame.mixer.music.get_volume() == 0:
-                    pygame.mixer.music.set_volume(0.05)
-                elif pygame.mixer.music.get_volume() != 0:
-                    pygame.mixer.music.set_volume(0)
+            if event.type == pygame.KEYDOWN:
+                if event.key == 109: # M key
+                    if pygame.mixer.music.get_volume() == 0:
+                        pygame.mixer.music.set_volume(0.05)
+                    elif pygame.mixer.music.get_volume() != 0:
+                        pygame.mixer.music.set_volume(0)
+
             #if event.type == pygame.MOUSEBUTTONDOWN:
                 #if event.key == pygame.
         #SCREEN.fill((255, 255, 255))
