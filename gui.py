@@ -94,6 +94,7 @@ def main_menu():
                         pygame.mixer.music.set_volume(0.05)
                     elif pygame.mixer.music.get_volume() != 0:
                         pygame.mixer.music.set_volume(0)
+
             #if event.type == pygame.MOUSEBUTTONDOWN:
                 #if event.key == pygame.
         #SCREEN.fill((255, 255, 255))
