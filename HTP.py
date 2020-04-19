@@ -76,6 +76,7 @@ def htp_pawn():
                 quit()
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
+        print(click)
         pygame.draw.rect(SCREEN, (0, 0, 0), (325, 0, 150, 150))
         SCREEN.blit(pygame.transform.scale(WHITE_PAWN, (150, 150)), (325, 0))
         text_to_screen('- These pieces can move one step at a time', 400, 200, smallText)
@@ -86,11 +87,70 @@ def htp_pawn():
         pygame.display.update()
         if 600<mouse[0]<750 and 650<mouse[1]<725:
             pygame.draw.rect(SCREEN, (192, 192, 192), (600, 650, 150, 75))
+            text_to_screen('Rook', 675, 688, mediumText)
+            if click[0] == 1:
+                h[0]=0
+                h[1]=1
+                return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (600, 650, 150, 75))
             text_to_screen('Rook', 675, 688, mediumText)
         pygame.display.update()
+        if 50<mouse[0]<200 and 650<mouse[1]<725:
+            pygame.draw.rect(SCREEN, (192, 192, 192), (50, 650, 150, 75))
+            text_to_screen('Menu', 125, 688, mediumText)
+            #  if click[0]=1:
+
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
+            text_to_screen('Menu', 125, 688, mediumText)
+        pygame.display.update()
+
+def htp_rook():
+    SCREEN.fill((255, 255, 255))
+    while h[1] == 1:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        pygame.draw.rect(SCREEN, (0, 0, 0), (325, 0, 150, 150))
+        SCREEN.blit(pygame.transform.scale(WHITE_ROOK, (150, 150)), (325, 0))
+        text_to_screen('- These pieces can move horizontally or vertically in ', 400, 200, smallText)
+        text_to_screen('unlimited steps until there is another chess piece', 400, 250, smallText)
+        text_to_screen('blocking its way.', 400, 300, smallText)
+        text_to_screen('-If the blocking piece is the opponent’s, the rook', 400, 350, smallText)
+        text_to_screen("the rook can capture it.", 400, 400, smallText)
+        text_to_screen("-If the right-sided rook (based on player perspective)",400,450,smallText)
+        text_to_screen("and the king have not been moved and there are no other", 400 ,500, smallText)
+        text_to_screen("pieces between them, you can perform castling",400,550,smallText)
+        pygame.display.update()
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
+        if 600<mouse[0]<750 and 650<mouse[1]<725:
+            pygame.draw.rect(SCREEN, (192, 192, 192), (600, 650, 150, 75))
+            text_to_screen('Knight', 675, 688, mediumText)
+            '''if click[0] == 1:
+                h[1]=0
+                h[2]=1
+                return h'''
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 0), (600, 650, 150, 75))
+            text_to_screen('Knight', 675, 688, mediumText)
+        pygame.display.update()
+        if 50<mouse[0]<200 and 650<mouse[1]<725:
+            pygame.draw.rect(SCREEN, (192, 192, 192), (50, 650, 150, 75))
+            text_to_screen('Menu', 125, 688, mediumText)
+            #  if click[0]=1:
+
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
+            text_to_screen('Menu', 125, 688, mediumText)
+        pygame.display.update()
+
 htp()
 if h[0]==1:
     htp_pawn()
+
+if h[1]==1:
+    htp_rook()
 
