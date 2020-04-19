@@ -44,8 +44,8 @@ h = [0,0,0,0,0,0,0,0]
 
 def htp():
     how = True
+    SCREEN.fill((255, 255, 255))
     while how:
-        SCREEN.fill((255, 255, 255))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -66,6 +66,18 @@ def htp():
             pygame.draw.rect(SCREEN, (0, 0, 0), (50, 150, 128, 128))
             SCREEN.blit(pygame.transform.scale(WHITE_PAWN, (128, 128)), (50, 150))
             pygame.display.update()
+        if 316<mouse[0]<444 and 150<mouse[1]<278:
+            pygame.draw.rect(SCREEN, (255, 255, 255), (316, 150, 128, 128))
+            SCREEN.blit(pygame.transform.scale(BLACK_ROOK, (128, 128)), (316, 150))
+            pygame.display.update()
+            if click[0] == 1:
+                h[1] = 1
+                return h
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 0), (316, 150, 128, 128))
+            SCREEN.blit(pygame.transform.scale(WHITE_ROOK, (128, 128)), (316, 150))
+            pygame.display.update()
+
         
 def htp_pawn():
     SCREEN.fill((255, 255, 255))
@@ -76,7 +88,6 @@ def htp_pawn():
                 quit()
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
-        print(click)
         pygame.draw.rect(SCREEN, (0, 0, 0), (325, 0, 150, 150))
         SCREEN.blit(pygame.transform.scale(WHITE_PAWN, (150, 150)), (325, 0))
         text_to_screen('- These pieces can move one step at a time', 400, 200, smallText)
@@ -91,6 +102,7 @@ def htp_pawn():
             if click[0] == 1:
                 h[0]=0
                 h[1]=1
+                pygame.time.wait(250)
                 return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (600, 650, 150, 75))
@@ -99,7 +111,6 @@ def htp_pawn():
         if 50<mouse[0]<200 and 650<mouse[1]<725:
             pygame.draw.rect(SCREEN, (192, 192, 192), (50, 650, 150, 75))
             text_to_screen('Menu', 125, 688, mediumText)
-            #  if click[0]=1:
 
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
@@ -129,10 +140,11 @@ def htp_rook():
         if 600<mouse[0]<750 and 650<mouse[1]<725:
             pygame.draw.rect(SCREEN, (192, 192, 192), (600, 650, 150, 75))
             text_to_screen('Knight', 675, 688, mediumText)
-            '''if click[0] == 1:
+            
+            if click[0] == 1:
                 h[1]=0
                 h[2]=1
-                return h'''
+                return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (600, 650, 150, 75))
             text_to_screen('Knight', 675, 688, mediumText)
