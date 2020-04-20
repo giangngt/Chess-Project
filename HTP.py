@@ -109,6 +109,19 @@ def htp():
             pygame.draw.rect(SCREEN, (0, 0, 0), (50, 450, 128, 128))
             SCREEN.blit(pygame.transform.scale(WHITE_BISHOP, (128, 128)), (50, 450))
             pygame.display.update()
+
+        if 316<mouse[0]<444 and 450<mouse[1]<578:
+            pygame.draw.rect(SCREEN, (255, 255, 255), (316, 450, 128, 128))
+            SCREEN.blit(pygame.transform.scale(BLACK_QUEEN, (128, 128)), (316, 450))
+            pygame.display.update()
+            if click[0] == 1:
+                h[7] = 0
+                h[4] = 1
+                return h
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 0), (316, 450, 128, 128))
+            SCREEN.blit(pygame.transform.scale(WHITE_QUEEN, (128, 128)), (316, 450))
+            pygame.display.update()
         
 def htp_pawn():
     SCREEN.fill((255, 255, 255))
@@ -277,6 +290,48 @@ def htp_bishop():
             pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
             text_to_screen('Menu', 125, 688, mediumText)
         pygame.display.update()
+
+def htp_queen():
+    SCREEN.fill((255, 255, 255))
+    while h[4] == 1:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        pygame.draw.rect(SCREEN, (0, 0, 0), (325, 0, 150, 150))
+        SCREEN.blit(pygame.transform.scale(WHITE_QUEEN, (150, 150)), (325, 0))
+        text_to_screen('- These pieces can move in 3 directions: vertically', 400, 200, smallText)
+        text_to_screen('horizontally and diagonally in unlimited steps', 400, 275, smallText)
+        text_to_screen('until there is another piece blocking its way', 400, 350, smallText)
+        text_to_screen('- If the blocking piece is the opponent’s', 400, 425, smallText)
+        text_to_screen('The queen can capture it', 400, 500, smallText)
+        pygame.display.update()
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
+        if 600 < mouse[0] < 750 and 650 < mouse[1] < 725:
+            pygame.draw.rect(SCREEN, (192, 192, 192), (600, 650, 150, 75))
+            text_to_screen('King', 675, 688, mediumText)
+
+            if click[0] == 1:
+                h[4] = 0
+                h[5] = 1
+                pygame.time.wait(250)
+                return h
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 0), (600, 650, 150, 75))
+            text_to_screen('King', 675, 688, mediumText)
+        pygame.display.update()
+        if 50 < mouse[0] < 200 and 650 < mouse[1] < 725:
+            pygame.draw.rect(SCREEN, (192, 192, 192), (50, 650, 150, 75))
+            text_to_screen('Menu', 125, 688, mediumText)
+            if click[0] == 1:
+                h[4] = 0
+                h[7] = 1
+                return h
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
+            text_to_screen('Menu', 125, 688, mediumText)
+        pygame.display.update()
 htp()
 while init:
     if h[0]==1:
@@ -287,5 +342,7 @@ while init:
         htp_knight()
     if h[3]==1:
         htp_bishop()
+    if h[4]==1:
+        htp_queen()
     if h[7]==1:
         htp()
