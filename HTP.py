@@ -40,14 +40,14 @@ def text_to_screen(msg, center_x, center_y, size):
     textRect.center = (center_x, center_y)
     SCREEN.blit(textSurf, textRect)
 
-h = [0,0,0,0,0,0,0,0]
+h = [0,0,0,0,0,0,0]
 init = True
 
 def htp():
     how = True
     SCREEN.fill((255, 255, 255))
     while how:
-        h[7]=1
+        h[6]=1
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -63,7 +63,7 @@ def htp():
             SCREEN.blit(pygame.transform.scale(BLACK_PAWN, (128,128)), (50,150))
             pygame.display.update()
             if click[0] == 1:
-                h[7] = 0
+                h[6] = 0
                 h[0] = 1
                 return h
         else:
@@ -76,7 +76,7 @@ def htp():
             SCREEN.blit(pygame.transform.scale(BLACK_ROOK, (128, 128)), (316, 150))
             pygame.display.update()
             if click[0] == 1:
-                h[7] = 0
+                h[6] = 0
                 h[1] = 1
                 return h
         else:
@@ -89,7 +89,7 @@ def htp():
             SCREEN.blit(pygame.transform.scale(BLACK_KNIGHT, (128, 128)), (582, 150))
             pygame.display.update()
             if click[0] == 1:
-                h[7] = 0
+                h[6] = 0
                 h[2] = 1
                 return h
         else:
@@ -102,7 +102,7 @@ def htp():
             SCREEN.blit(pygame.transform.scale(BLACK_BISHOP, (128, 128)), (50, 450))
             pygame.display.update()
             if click[0] == 1:
-                h[7] = 0
+                h[6] = 0
                 h[3] = 1
                 return h
         else:
@@ -115,12 +115,25 @@ def htp():
             SCREEN.blit(pygame.transform.scale(BLACK_QUEEN, (128, 128)), (316, 450))
             pygame.display.update()
             if click[0] == 1:
-                h[7] = 0
+                h[6] = 0
                 h[4] = 1
                 return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (316, 450, 128, 128))
             SCREEN.blit(pygame.transform.scale(WHITE_QUEEN, (128, 128)), (316, 450))
+            pygame.display.update()
+
+        if 582<mouse[0]<710 and 450<mouse[1]<578:
+            pygame.draw.rect(SCREEN, (255, 255, 255), (582, 450, 128, 128))
+            SCREEN.blit(pygame.transform.scale(BLACK_KING, (128, 128)), (582, 450))
+            pygame.display.update()
+            if click[0] == 1:
+                h[6] = 0
+                h[5] = 1
+                return h
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 0), (582, 450, 128, 128))
+            SCREEN.blit(pygame.transform.scale(WHITE_KING, (128, 128)), (582, 450))
             pygame.display.update()
         
 def htp_pawn():
@@ -157,7 +170,8 @@ def htp_pawn():
             text_to_screen('Menu', 125, 688, mediumText)
             if click[0] == 1:
                 h[0] = 0
-                h[7] = 1
+                h[6
+                ] = 1
                 return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
@@ -202,7 +216,7 @@ def htp_rook():
             text_to_screen('Menu', 125, 688, mediumText)
             if click[0] == 1:
                 h[1]=0
-                h[7]=1
+                h[6]=1
                 return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
@@ -243,7 +257,7 @@ def htp_knight():
             text_to_screen('Menu', 125, 688, mediumText)
             if click[0] == 1:
                 h[2] = 0
-                h[7] = 1
+                h[6] = 1
                 return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
@@ -284,7 +298,7 @@ def htp_bishop():
             text_to_screen('Menu', 125, 688, mediumText)
             if click[0] == 1:
                 h[3] = 0
-                h[7] = 1
+                h[6] = 1
                 return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
@@ -326,11 +340,44 @@ def htp_queen():
             text_to_screen('Menu', 125, 688, mediumText)
             if click[0] == 1:
                 h[4] = 0
-                h[7] = 1
+                h[6] = 1
                 return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
             text_to_screen('Menu', 125, 688, mediumText)
+        pygame.display.update()
+
+def htp_king():
+    SCREEN.fill((255, 255, 255))
+    while h[5] == 1:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        pygame.draw.rect(SCREEN, (0, 0, 0), (325, 0, 150, 150))
+        SCREEN.blit(pygame.transform.scale(WHITE_KING, (150, 150)), (325, 0))
+        text_to_screen('- These pieces are the most important pieces on the board', 400, 200, smallText)
+        text_to_screen('- These pieces can move 1 step only in 3 directions', 400, 250, smallText)
+        text_to_screen('vertically, horizontally and diagonally', 400, 300, smallText)
+        text_to_screen('- If these pieces are in danger (being checked)', 400, 350, smallText)
+        text_to_screen('other pieces can not be moved except for pieces', 400, 400, smallText)
+        text_to_screen('that can protect the kings.', 400, 450, smallText)
+        text_to_screen('- If the blocking piece is the opponent’s', 400, 500, smallText)
+        text_to_screen('The king can capture it', 400, 550, smallText)
+        text_to_screen('If these pieces are captured, the other player wins the game', 400, 600, smallText)
+        pygame.display.update()
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
+        if 300 < mouse[0] < 500 and 650 < mouse[1] < 725:
+            pygame.draw.rect(SCREEN, (192, 192, 192), (300, 650, 200, 75))
+            text_to_screen('Menu', 400, 688, mediumText)
+            if click[0] == 1:
+                h[5] = 0
+                h[6] = 1
+                return h
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 0), (300, 650, 200, 75))
+            text_to_screen('Menu', 400, 688, mediumText)
         pygame.display.update()
 htp()
 while init:
@@ -344,5 +391,7 @@ while init:
         htp_bishop()
     if h[4]==1:
         htp_queen()
-    if h[7]==1:
+    if h[5]==1:
+        htp_king()
+    if h[6]==1:
         htp()
