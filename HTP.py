@@ -135,6 +135,16 @@ def htp():
             pygame.draw.rect(SCREEN, (0, 0, 0), (582, 450, 128, 128))
             SCREEN.blit(pygame.transform.scale(WHITE_KING, (128, 128)), (582, 450))
             pygame.display.update()
+
+        if 250 < mouse[0] < 550 and 650 < mouse[1] < 725:
+            pygame.draw.rect(SCREEN, (192, 192, 192), (250, 650, 300, 75))
+            text_to_screen('Main Menu', 400, 688, mediumText)
+            #if click[0] == 1:
+               #link Main Menu
+        else:
+            pygame.draw.rect(SCREEN, (0, 0, 0), (250, 650, 300, 75))
+            text_to_screen('Main Menu', 400, 688, mediumText)
+        pygame.display.update()
         
 def htp_pawn():
     SCREEN.fill((255, 255, 255))
