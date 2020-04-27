@@ -60,6 +60,7 @@ CLOCK_TICK = 15
 SCREEN = pygame.display.set_mode((800, 800), pygame.RESIZABLE)
 SCREEN_TITLE = 'Chess Game'
 
+"""HTP part
 h = [0, 0, 0, 0, 0, 0, 0]
 init_menu = True
 init_game = False
@@ -69,16 +70,20 @@ mediumText = pygame.font.Font('Roboto/Roboto-Medium.ttf', 46)
 midText = pygame.font.Font('Roboto/Roboto-Medium.ttf', 38)
 smallText = pygame.font.Font('Roboto/Roboto-Medium.ttf', 30)
 
+"""
+
 pygame.display.set_icon(pygame.image.load('images/chess_icon.ico'))
 pygame.display.set_caption(SCREEN_TITLE)
 def text_objects(text, font):
     textSurface = font.render(text, True, (119, 136, 153))
     return textSurface, textSurface.get_rect()
 
+"""HTP part
 def text_to_screen(msg, center_x, center_y, size):
     textSurf, textRect = text_objects(msg, size)
     textRect.center = (center_x, center_y)
     SCREEN.blit(textSurf, textRect)
+"""
 
 def resize_screen(square_side_len):
     global SQUARE_SIDE
@@ -122,11 +127,14 @@ def main_menu():
         if 350 > mouse[0] > 50 and 400 > mouse[1] > 350:
             pygame.draw.rect(SCREEN, (0, 255, 127), (50, 350, 300, 50))
             if click[0] == 1:
+                return #before HTP
+                """HTP part
                 global init_game
                 init_game = True
                 global init_menu
                 init_menu = False
                 return init_game, init_menu
+                """
         else:
             pygame.draw.rect(SCREEN, (169, 169, 169), (50, 350, 300, 50))
 
@@ -140,10 +148,12 @@ def main_menu():
 
         if 350 > mouse[0] > 50 and 500 > mouse[1] > 450:
             pygame.draw.rect(SCREEN, (100, 149, 237), (50, 450, 300, 50))
+            """part HTP
             if click[0] == 1:
                 global init_htp
                 init_htp = True
                 return init_htp
+            """
         else:
             pygame.draw.rect(SCREEN, (169, 169, 169), (50, 450, 300, 50))
 
@@ -161,6 +171,7 @@ def main_menu():
         pygame.display.update()
         CLOCK.tick(30)
 
+"""partHTP
 def htp():
     how = True
     SCREEN.fill((255, 255, 255))
@@ -513,6 +524,7 @@ def htp_king():
             pygame.draw.rect(SCREEN, (0, 0, 0), (300, 650, 200, 75))
             text_to_screen('Menu', 400, 688, mediumText)
         pygame.display.update()
+"""
 
 def print_empty_board():
     SCREEN.fill(BOARD_COLOR[0])
@@ -709,15 +721,20 @@ def play_as_black(game=chess.Game()):
     return play_as(game, chess.BLACK)
 
 def play_random_color(game=chess.Game()):
+    """HTP part
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
+    """
     color = choice([chess.WHITE, chess.BLACK])
     play_as(game, color)
 
 # chess.verbose = True
 while True:
+    main_menu()
+    play_random_color() #before HTP
+    """HTP part
     print(init_menu)
     print(init_game)
     print(init_htp)
@@ -743,7 +760,4 @@ while True:
             if h[6]==1:
                 htp()
 
-
-
-
-
+"""
