@@ -1,10 +1,4 @@
 import pygame
-from random import choice
-from traceback import format_exc
-from sys import stderr
-from time import strftime
-from copy import deepcopy
-import time
 
 pygame.init()
 
@@ -45,6 +39,8 @@ h = [0,0,0,0,0,0,0]
 init = True
 
 def htp():
+    global init
+    init = True
     how = True
     SCREEN.fill((255, 255, 255))
     while how:
@@ -141,12 +137,13 @@ def htp():
         if 250 < mouse[0] < 550 and 650 < mouse[1] < 725:
             pygame.draw.rect(SCREEN, (192, 192, 192), (250, 650, 300, 75))
             text_to_screen('Main Menu', 400, 688, mediumText)
-            #if click[0] == 1:
-               #link Main Menu
+            if click[0] == 1:
+               init = False
+               return 
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (250, 650, 300, 75))
             text_to_screen('Main Menu', 400, 688, mediumText)
-        pygame.display.update()
+            pygame.display.update()
         
 def htp_pawn():
     SCREEN.fill((255, 255, 255))
@@ -182,8 +179,7 @@ def htp_pawn():
             text_to_screen('Menu', 125, 688, mediumText)
             if click[0] == 1:
                 h[0] = 0
-                h[6
-                ] = 1
+                h[6] = 1
                 return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (50, 650, 150, 75))
@@ -386,24 +382,27 @@ def htp_king():
             if click[0] == 1:
                 h[5] = 0
                 h[6] = 1
+                pygame.time.wait(250)
                 return h
         else:
             pygame.draw.rect(SCREEN, (0, 0, 0), (300, 650, 200, 75))
             text_to_screen('Menu', 400, 688, mediumText)
         pygame.display.update()
-htp()
-while init:
-    if h[0]==1:
-        htp_pawn()
-    if h[1]==1:
-        htp_rook()
-    if h[2]==1:
-        htp_knight()
-    if h[3]==1:
-        htp_bishop()
-    if h[4]==1:
-        htp_queen()
-    if h[5]==1:
-        htp_king()
-    if h[6]==1:
-        htp()
+
+def how_to_play():
+    htp()
+    while init:
+        if h[0]==1:
+            htp_pawn()
+        if h[1]==1:
+            htp_rook()
+        if h[2]==1:
+            htp_knight()
+        if h[3]==1:
+            htp_bishop()
+        if h[4]==1:
+            htp_queen()
+        if h[5]==1:
+            htp_king()
+        if h[6]==1:
+            htp()

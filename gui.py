@@ -1,5 +1,6 @@
 import pygame,chess
 from gameplay import play_random_color
+from HTP import how_to_play
 
 pygame.init()
 
@@ -10,7 +11,7 @@ pygame.mixer.music.load('sounds/peaceful-piano.wav')
 
 CLOCK = pygame.time.Clock()
 CLOCK_TICK = 15
-
+gamestt = 0
 
 
 #SCREEN = pygame.display.set_mode((8*SQUARE_SIDE, 8*SQUARE_SIDE), pygame.RESIZABLE)
@@ -27,6 +28,8 @@ def text_objects(text, font):
     return textSurface, textSurface.get_rect()
 
 def main_menu():
+    global gamestt
+    gamestt = 0
     background = pygame.image.load('images/better-wallpaper.jpg').convert()
     background = pygame.transform.scale(background, (800, 800))
     title = pygame.image.load('images/title_pink.png').convert_alpha()
@@ -60,14 +63,8 @@ def main_menu():
         if 350 > mouse[0] > 50 and 400 > mouse[1] > 350:
             pygame.draw.rect(SCREEN, (0, 255, 127), (50, 350, 300, 50))
             if click[0] == 1:
+                gamestt = 1
                 return #before HTP
-                """HTP part
-                global init_game
-                init_game = True
-                global init_menu
-                init_menu = False
-                return init_game, init_menu
-                """
         else:
             pygame.draw.rect(SCREEN, (169, 169, 169), (50, 350, 300, 50))
 
@@ -81,12 +78,9 @@ def main_menu():
 
         if 350 > mouse[0] > 50 and 500 > mouse[1] > 450:
             pygame.draw.rect(SCREEN, (100, 149, 237), (50, 450, 300, 50))
-            """part HTP
             if click[0] == 1:
-                global init_htp
-                init_htp = True
-                return init_htp
-            """
+                gamestt = 2
+                return
         else:
             pygame.draw.rect(SCREEN, (169, 169, 169), (50, 450, 300, 50))
 
@@ -106,4 +100,7 @@ def main_menu():
 
 while True:
     main_menu()
-    play_random_color()
+    if(gamestt == 1):
+        play_random_color()
+    else:
+        how_to_play()
