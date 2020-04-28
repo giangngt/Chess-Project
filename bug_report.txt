@@ -1,0 +1,22 @@
+----- 04/27/20 16:29:19 -----
+Traceback (most recent call last):
+  File "d:/USTH/Gen 9 Second year/SE/Chess-Project/gui.py", line 649, in play_as
+    move = (chess.str2bb(leaving_square), chess.str2bb(arriving_square))
+UnboundLocalError: local variable 'leaving_square' referenced before assignment
+
+Playing as WHITE:
+	
+	rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+-----------------------------
+
+----- 04/27/20 16:29:21 -----
+Traceback (most recent call last):
+  File "d:/USTH/Gen 9 Second year/SE/Chess-Project/gui.py", line 649, in play_as
+    move = (chess.str2bb(leaving_square), chess.str2bb(arriving_square))
+UnboundLocalError: local variable 'leaving_square' referenced before assignment
+
+Playing as WHITE:
+	
+	rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+-----------------------------
+
