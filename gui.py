@@ -1,9 +1,14 @@
+import os
+WINDOW_X = 200
+WINDOW_Y = 22
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (WINDOW_X, WINDOW_Y)
+
 import pygame,chess
 from gameplay import play_random_color
 from HTP import how_to_play
 
 pygame.init()
-
+SCREEN = pygame.display.set_mode((800, 800), pygame.RESIZABLE)
 SQUARE_SIDE = 100
 
 MOVE_SOUND = pygame.mixer.Sound('sounds/chess-effect.wav')
@@ -15,7 +20,6 @@ gamestt = 0
 
 
 #SCREEN = pygame.display.set_mode((8*SQUARE_SIDE, 8*SQUARE_SIDE), pygame.RESIZABLE)
-SCREEN = pygame.display.set_mode((800, 800), pygame.RESIZABLE)
 SCREEN_TITLE = 'Chess Game'
 
 
