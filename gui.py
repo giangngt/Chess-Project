@@ -1,6 +1,6 @@
 import os
 WINDOW_X = 200
-WINDOW_Y = 22
+WINDOW_Y = 60
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (WINDOW_X, WINDOW_Y)
 
 import pygame,chess
