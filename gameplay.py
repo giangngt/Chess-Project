@@ -1,3 +1,4 @@
+
 import pygame, chess
 from random import choice
 from traceback import format_exc
@@ -146,6 +147,7 @@ def make_AI_move(game, color):
     set_title(SCREEN_TITLE)
     print_board(new_game.board, color)
     pygame.mixer.Sound.play(MOVE_SOUND)
+
     return new_game
 
 def try_move(game, attempted_move):
