@@ -3,8 +3,6 @@ from pynput.mouse import Button, Controller
 global moved
 mouse = Controller()
 time.sleep(1)
-'''while True:
-    print(mouse.position)'''
 #Start the game
 mouse.position = (402,434)
 time.sleep(0.5)

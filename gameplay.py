@@ -1,4 +1,3 @@
-
 import pygame, chess
 from random import choice
 from traceback import format_exc
