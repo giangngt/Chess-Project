@@ -4,7 +4,7 @@ global moved
 mouse = Controller()
 time.sleep(1)
 #Start the game
-mouse.position = (402,434)
+mouse.position = (428,442)
 time.sleep(0.5)
 mouse.press(Button.left)
 time.sleep(0.05)

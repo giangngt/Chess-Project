@@ -5,7 +5,7 @@ time.sleep(1)
 mouse.position = (428, 542)
 time.sleep(0.5)
 mouse.press(Button.left)
-time.sleep(0.05)
+time.sleep(0.15)
 mouse.release(Button.left)
 # Click on Pawn Instruction
 time.sleep(1)
