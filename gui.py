@@ -28,7 +28,7 @@ pygame.display.set_caption(SCREEN_TITLE)
 
 
 def text_objects(text, font):
-    textSurface = font.render(text, True, (119, 136, 153))
+    textSurface = font.render(text, True, (250, 250, 250))
     return textSurface, textSurface.get_rect()
 
 def main_menu():
