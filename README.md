@@ -27,7 +27,25 @@ python3 gui.py
 
 ## Application feature
 
-The software is a simple chess game written in Python.
+The software is a simple chess game written in Python.  
+It contains:  
+- A single player mode.
+- A how to play section to teach new player how to play chess.
+
+## User instruction
+
+1. In the main menu, click the buttons to use desired function.  
+2. In game screen:  
+- Drag and drop the chess piece to move.  
+- Press H to make AI move.  
+- Press U to undo last move.  
+- Press C to change board color.  
+- Press M to turn music on/off.  
+- Press P to print move list.  
+- Press E to evaluate the game.  
+- Press J to turn Queen into Joker.  
+3. In Instruction screen:  
+- Click the buttons to choose desired function.
 
 ## Documents
 
